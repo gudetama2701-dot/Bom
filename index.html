@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ตรวจสอบสลิปปลอม</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Receipt Scanner App</p>
+          <h1>แอปสแกนสลิป</h1>
+          <p class="lead">
+            สแกนหรือแนบภาพสลิปเพื่อดูข้อมูลโอนและผลลัพธ์ทันที เหมือนแอปสแกนสลิปจริง ๆ
+          </p>
+        </div>
+      </header>
+
+      <main class="mobile-stage">
+        <section class="card receipt-card">
+          <div class="scanner-toolbar">
+            <div class="scanner-badge">📷 สแกนสลิป</div>
+            <div class="scanner-actions">
+              <button id="loadSampleQr" type="button" class="ghost-button secondary">ทดสอบ QR ตัวอย่าง</button>
+              <label class="ghost-button" for="receiptImage">
+                <input type="file" id="receiptImage" accept="image/*" />
+                <span>แนบภาพ</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="receipt-preview-shell">
+            <div class="receipt-frame">
+              <img id="preview" alt="ภาพสลิปที่อัปโหลด" />
+              <div id="previewPlaceholder" class="preview-placeholder">รอภาพสลิปจากกล้องหรืออัลบั้ม</div>
+            </div>
+          </div>
+
+          <div class="details-panel">
+            <div class="status-row">
+              <span id="extractedStatus">ยังไม่ได้สแกนสลิป</span>
+              <span class="badge">QR Ready</span>
+            </div>
+            <div class="amount-row">
+              <div class="amount-pill">ยอดเงินจริงที่โอนเข้ามา: <span id="detectedAmount">—</span></div>
+              <div id="amountConfidence" class="confidence-pill low">ความมั่นใจ: —</div>
+            </div>
+            <div class="qr-meta">
+              <div><strong>ธนาคาร:</strong> <span id="bankName">—</span></div>
+              <div><strong>ร้าน/ผู้ส่ง:</strong> <span id="qrMerchant">—</span></div>
+              <div><strong>อ้างอิง:</strong> <span id="qrReference">—</span></div>
+              <div><strong>วันที่:</strong> <span id="qrDate">—</span></div>
+            </div>
+            <div id="extractedText" class="extracted-text"></div>
+          </div>
+        </section>
+
+        <section class="card result-card">
+          <div class="result-header">
+            <h2>สลิปที่ได้รับ</h2>
+            <div class="result-chip">รับเงินเข้ามาแล้ว</div>
+          </div>
+
+          <div class="receipt-result">
+            <div class="receipt-result-top">
+              <div>
+                <div class="receipt-label">ชื่อร้าน</div>
+                <div id="resultMerchant" class="receipt-value">—</div>
+              </div>
+              <div class="receipt-status">✓ รับเงินเข้ามาแล้ว</div>
+            </div>
+
+            <div class="receipt-result-middle">
+              <div>
+                <div class="receipt-label">ยอดเงิน</div>
+                <div id="resultAmount" class="receipt-amount">—</div>
+              </div>
+              <div>
+                <div class="receipt-label">วันที่</div>
+                <div id="resultDate" class="receipt-value">—</div>
+              </div>
+            </div>
+
+            <div class="bank-info-box">
+              <div class="bank-info-row"><span class="bank-info-label">ธนาคาร</span><span id="resultBankName">—</span></div>
+              <div class="bank-info-row"><span class="bank-info-label">ผู้โอน</span><span id="resultSender">—</span></div>
+              <div class="bank-info-row"><span class="bank-info-label">ผู้รับ</span><span id="resultRecipient">—</span></div>
+              <div class="bank-info-row"><span class="bank-info-label">บัญชี</span><span id="resultAccount">—</span></div>
+              <div class="bank-info-row"><span class="bank-info-label">อ้างอิง</span><span id="resultReference">—</span></div>
+              <div class="bank-info-row"><span class="bank-info-label">เวลา</span><span id="resultTime">—</span></div>
+              <div class="bank-info-row"><span class="bank-info-label">สาขา</span><span id="resultBranch">—</span></div>
+              <div class="bank-info-row"><span class="bank-info-label">สถานะ</span><span id="resultStatus">—</span></div>
+            </div>
+
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
